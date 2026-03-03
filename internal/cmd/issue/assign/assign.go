@@ -12,6 +12,7 @@ import (
 	"github.com/spf13/viper"
 
 	"github.com/ankitpokhrel/jira-cli/api"
+	"github.com/ankitpokhrel/jira-cli/internal/cmdcommon"
 	"github.com/ankitpokhrel/jira-cli/internal/cmdutil"
 	"github.com/ankitpokhrel/jira-cli/internal/query"
 	"github.com/ankitpokhrel/jira-cli/pkg/jira"
@@ -44,7 +45,7 @@ $ jira issue assign ISSUE-1 x`
 
 // NewCmdAssign is an assign command.
 func NewCmdAssign() *cobra.Command {
-	return &cobra.Command{
+	cmd := &cobra.Command{
 		Use:     "assign ISSUE-KEY ASSIGNEE",
 		Short:   "Assign issue to a user",
 		Long:    helpText,
@@ -56,6 +57,8 @@ ASSIGNEE	Email or display name of the user to assign the issue to`,
 		},
 		Run: assign,
 	}
+	cmdcommon.DisableWriteCommand(cmd)
+	return cmd
 }
 
 func assign(cmd *cobra.Command, args []string) {

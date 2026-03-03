@@ -10,6 +10,7 @@ import (
 	"github.com/spf13/viper"
 
 	"github.com/ankitpokhrel/jira-cli/api"
+	"github.com/ankitpokhrel/jira-cli/internal/cmdcommon"
 	"github.com/ankitpokhrel/jira-cli/internal/cmdutil"
 	"github.com/ankitpokhrel/jira-cli/internal/query"
 	"github.com/ankitpokhrel/jira-cli/pkg/jira"
@@ -37,6 +38,7 @@ STATE		State you want to transition the issue to`,
 		},
 		Run: move,
 	}
+	cmdcommon.DisableWriteCommand(&cmd)
 
 	cmd.Flags().SortFlags = false
 

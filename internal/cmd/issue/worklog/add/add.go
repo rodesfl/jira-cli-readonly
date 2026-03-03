@@ -51,6 +51,7 @@ func NewCmdWorklogAdd() *cobra.Command {
 		},
 		Run: add,
 	}
+	cmdcommon.DisableWriteCommand(&cmd)
 
 	cmd.Flags().SortFlags = false
 

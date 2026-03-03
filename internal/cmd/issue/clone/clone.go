@@ -9,6 +9,7 @@ import (
 	"github.com/spf13/viper"
 
 	"github.com/ankitpokhrel/jira-cli/api"
+	"github.com/ankitpokhrel/jira-cli/internal/cmdcommon"
 	"github.com/ankitpokhrel/jira-cli/internal/cmdutil"
 	"github.com/ankitpokhrel/jira-cli/internal/query"
 	"github.com/ankitpokhrel/jira-cli/pkg/adf"
@@ -39,6 +40,7 @@ func NewCmdClone() *cobra.Command {
 		Args: cobra.MinimumNArgs(1),
 		Run:  clone,
 	}
+	cmdcommon.DisableWriteCommand(&cmd)
 
 	setFlags(&cmd)
 

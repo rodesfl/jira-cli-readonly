@@ -52,6 +52,7 @@ func NewCmdCommentAdd() *cobra.Command {
 		},
 		Run: add,
 	}
+	cmdcommon.DisableWriteCommand(&cmd)
 
 	cmd.Flags().Bool("web", false, "Open issue in web browser after adding comment")
 	cmd.Flags().StringP("template", "T", "", "Path to a file to read comment body from")

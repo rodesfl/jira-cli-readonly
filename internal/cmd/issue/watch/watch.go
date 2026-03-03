@@ -11,6 +11,7 @@ import (
 	"github.com/spf13/viper"
 
 	"github.com/ankitpokhrel/jira-cli/api"
+	"github.com/ankitpokhrel/jira-cli/internal/cmdcommon"
 	"github.com/ankitpokhrel/jira-cli/internal/cmdutil"
 	"github.com/ankitpokhrel/jira-cli/internal/query"
 	"github.com/ankitpokhrel/jira-cli/pkg/jira"
@@ -35,7 +36,7 @@ $ jira issue watch ISSUE-1 $(jira me)`
 
 // NewCmdWatch is an watch command.
 func NewCmdWatch() *cobra.Command {
-	return &cobra.Command{
+	cmd := &cobra.Command{
 		Use:     "watch ISSUE-KEY WATCHER",
 		Short:   "Add user to issue watchers",
 		Long:    helpText,
@@ -47,6 +48,8 @@ WATCHER	Email or display name of the user to add to issue watchers`,
 		},
 		Run: watch,
 	}
+	cmdcommon.DisableWriteCommand(cmd)
+	return cmd
 }
 
 func watch(cmd *cobra.Command, args []string) {

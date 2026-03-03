@@ -11,6 +11,7 @@ import (
 
 	"github.com/ankitpokhrel/jira-cli/api"
 	"github.com/ankitpokhrel/jira-cli/internal/cmd/issue/link/remote"
+	"github.com/ankitpokhrel/jira-cli/internal/cmdcommon"
 	"github.com/ankitpokhrel/jira-cli/internal/cmdutil"
 	"github.com/ankitpokhrel/jira-cli/internal/query"
 	"github.com/ankitpokhrel/jira-cli/pkg/jira"
@@ -37,6 +38,7 @@ func NewCmdLink() *cobra.Command {
 		},
 		Run: link,
 	}
+	cmdcommon.DisableWriteCommand(&cmd)
 
 	cmd.AddCommand(remote.NewCmdRemoteLink())
 	cmd.PersistentFlags().Bool("web", false, "Open issue in web browser after successful linking")

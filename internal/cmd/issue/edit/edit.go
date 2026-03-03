@@ -49,6 +49,7 @@ func NewCmdEdit() *cobra.Command {
 		Args: cobra.MinimumNArgs(1),
 		Run:  edit,
 	}
+	cmdcommon.DisableWriteCommand(&cmd)
 
 	setFlags(&cmd)
 

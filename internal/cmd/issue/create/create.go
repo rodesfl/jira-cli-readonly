@@ -59,6 +59,7 @@ func NewCmdCreate() *cobra.Command {
 		Example: examples,
 		Run:     create,
 	}
+	cmdcommon.DisableWriteCommand(&cmd)
 
 	cmd.Flags().Bool(flagRaw, false, "Print output in JSON format")
 

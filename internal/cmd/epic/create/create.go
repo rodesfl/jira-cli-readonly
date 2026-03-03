@@ -31,13 +31,15 @@ $ jira epic create -n"Epic with custom fields" --custom story-points=3`
 
 // NewCmdCreate is a create command.
 func NewCmdCreate() *cobra.Command {
-	return &cobra.Command{
+	cmd := &cobra.Command{
 		Use:     "create",
 		Short:   "Create an epic in a project",
 		Long:    helpText,
 		Example: examples,
 		Run:     create,
 	}
+	cmdcommon.DisableWriteCommand(cmd)
+	return cmd
 }
 
 // SetFlags sets flags supported by create command.

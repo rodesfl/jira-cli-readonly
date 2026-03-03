@@ -6,6 +6,7 @@ import (
 
 	"github.com/AlecAivazis/survey/v2"
 	"github.com/ankitpokhrel/jira-cli/api"
+	"github.com/ankitpokhrel/jira-cli/internal/cmdcommon"
 	"github.com/ankitpokhrel/jira-cli/internal/cmdutil"
 	"github.com/ankitpokhrel/jira-cli/internal/query"
 	"github.com/spf13/cobra"
@@ -18,7 +19,7 @@ const (
 
 // NewCmdClose is an add command.
 func NewCmdClose() *cobra.Command {
-	return &cobra.Command{
+	cmd := &cobra.Command{
 		Use:     "close SPRINT_ID",
 		Short:   "Close sprint",
 		Long:    helpText,
@@ -29,6 +30,8 @@ func NewCmdClose() *cobra.Command {
 		},
 		Run: closeSprint,
 	}
+	cmdcommon.DisableWriteCommand(cmd)
+	return cmd
 }
 
 func closeSprint(cmd *cobra.Command, args []string) {

@@ -8,6 +8,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
+	"github.com/ankitpokhrel/jira-cli/internal/cmdcommon"
 	"github.com/ankitpokhrel/jira-cli/internal/cmdutil"
 	jiraConfig "github.com/ankitpokhrel/jira-cli/internal/config"
 	"github.com/ankitpokhrel/jira-cli/internal/query"
@@ -34,6 +35,7 @@ func NewCmdInit() *cobra.Command {
 		Aliases: []string{"initialize", "configure", "config", "setup"},
 		Run:     initialize,
 	}
+	cmdcommon.DisableWriteCommand(&cmd)
 
 	cmd.Flags().SortFlags = false
 

@@ -9,6 +9,7 @@ import (
 	"github.com/spf13/viper"
 
 	"github.com/ankitpokhrel/jira-cli/api"
+	"github.com/ankitpokhrel/jira-cli/internal/cmdcommon"
 	"github.com/ankitpokhrel/jira-cli/internal/cmdutil"
 	"github.com/ankitpokhrel/jira-cli/internal/query"
 	"github.com/ankitpokhrel/jira-cli/pkg/jira"
@@ -21,7 +22,7 @@ const (
 
 // NewCmdAdd is an add command.
 func NewCmdAdd() *cobra.Command {
-	return &cobra.Command{
+	cmd := &cobra.Command{
 		Use:     "add EPIC-KEY ISSUE-1 [...ISSUE-N]",
 		Short:   "Add issues to an epic",
 		Long:    helpText,
@@ -33,6 +34,8 @@ func NewCmdAdd() *cobra.Command {
 		},
 		Run: add,
 	}
+	cmdcommon.DisableWriteCommand(cmd)
+	return cmd
 }
 
 func add(cmd *cobra.Command, args []string) {
